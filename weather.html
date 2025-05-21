@@ -1,1 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Погода у Києві</title>
+</head>
+<body>
+  <h1 id="weather"></h1>
+
+  <script>
+    const apiKey = '4ea1f9504ce7fbddf1ae163891442885';
+    const city = 'Kyiv';
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        const weatherText = `Погода в ${data.name}: ${data.main.temp}°C, Вітер: ${data.wind.speed} м/с`;
+        document.getElementById('weather').textContent = weatherText;
+      })
+      .catch(error => console.error('Помилка:', error));
+  </script>
+</body>
+</html>
 
